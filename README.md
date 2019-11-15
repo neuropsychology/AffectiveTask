@@ -8,7 +8,7 @@ that were highly distinct on arousal level/valence category ratings.
 The task is simple and straight forward. There are 60 trials in total. In each trial, an affective stimulus (picture) is presented for *3.0 seconds* 
 and participants are asked to give the respective ratings of their emotion on two visual analogue scales - one for the level of arousal (Not intense - Intense) and one for level of valence (Positive - Negative). 
 
-![Ratings](https://github.com/neuropsychology/AffectiveTask/blob/master/Affective.py)
+![](task_rating.gif)
 
 Visual pictures are selected from the Nencki Affective Picture System (NAPS), which consists of 1,356 realistic, high-quality photographs (Marchewka, Zurawski, Jednoróg, & Grabowska, 2014).
 
