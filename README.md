@@ -13,7 +13,7 @@ and participants are asked to give the respective ratings of their emotion on tw
 Visual pictures are selected from the Nencki Affective Picture System (NAPS), which consists of 1,356 realistic, high-quality photographs (Marchewka, Zurawski, Jednoróg, & Grabowska, 2014).
 
 ## Installation
-Download and run the experiment in Python: source("https://github.com/neuropsychology/AffectiveTask/Affective.py")
+Download and run the experiment in Python: source("https://github.com/neuropsychology/AffectiveTask/blob/master/Affective.py")
 
 Packages needed:
 - [neuropsydia] (pip install https://github.com/neuropsychology/Neuropsydia.py/zipball/master)
