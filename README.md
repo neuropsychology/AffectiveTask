@@ -44,7 +44,7 @@ Currently, there are 60 NAPS images selected for the AffectiveTask. Please refer
 All selected stimuli belong to the **People/Faces Category**. Half of them are categorized as *Neutral* and the other half as *Negative*. 
 
 We have plotted the affective ratings of 60 selected stimuli; the ratings include **valence** (ranging from highly negative to highly positive), **arousal** 
-(ranging from relaxed/unaroused to excited/aroused), and **approach–avoidance** (ranging from a tendency to avoid to a tendency to approach a stimulus) 
+(ranging from relaxed/unaroused to excited/aroused), and **approach–avoidance** (ranging from a tendency to avoid to a tendency to approach a stimulus). 
 
 ![Affective Ratings of the Selected Stimuli](https://github.com/Tam-Pham/AffectiveTask/blob/master/stimuli_selection/figures/Ratings_Selected.png)
 
