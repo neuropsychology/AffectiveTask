@@ -13,7 +13,7 @@ and participants are asked to give the respective ratings of their emotion on tw
 Visual pictures are selected from the Nencki Affective Picture System (NAPS), which consists of 1,356 realistic, high-quality photographs (Marchewka, Zurawski, Jednoróg, & Grabowska, 2014).
 
 ## Installation
-Download and run the experiment in Python: source("https://github.com/neuropsychology/AffectiveTask/blob/master/task_rating.gif")
+Download and run the experiment in Python: source("https://github.com/neuropsychology/AffectiveTask/Affective.py")
 
 Packages needed:
 - [neuropsydia] (pip install https://github.com/neuropsychology/Neuropsydia.py/zipball/master)
@@ -42,6 +42,8 @@ path = "./stimuli/"
 Currently, there are 60 NAPS images selected for the AffectiveTask. Please refer to the `stimuli_list.csv`. 
 
 All selected stimuli belong to the **People/Faces Category**. Half of them are categorized as *Neutral* and the other half as *Negative*. 
+We selected Negative stimuli based on, in decreasing order of importance, ratings of high arousal, negative valence, and a high tendency to avoid. 
+We selected Neutral stimuli based on a range of valence ratings representative of neutrality/ambivalence. 
 
 We have plotted the affective ratings of 60 selected stimuli; the ratings include **valence** (ranging from highly negative to highly positive), **arousal** 
 (ranging from relaxed/unaroused to excited/aroused), and **approach–avoidance** (ranging from a tendency to avoid to a tendency to approach a stimulus). 
