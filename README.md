@@ -13,7 +13,7 @@ and participants are asked to give the respective ratings of their emotion on tw
 Visual pictures are selected from the Nencki Affective Picture System (NAPS), which consists of 1,356 realistic, high-quality photographs (Marchewka, Zurawski, Jednoróg, & Grabowska, 2014).
 
 ## Installation
-Download and run the experiment in Python: source("https://github.com/Tam-Pham/AffectiveTask/blob/master/task_rating.gif")
+Download and run the experiment in Python: source("https://github.com/neuropsychology/AffectiveTask/blob/master/task_rating.gif")
 
 Packages needed:
 - [neuropsydia] (pip install https://github.com/neuropsychology/Neuropsydia.py/zipball/master)
@@ -46,7 +46,7 @@ All selected stimuli belong to the **People/Faces Category**. Half of them are c
 We have plotted the affective ratings of 60 selected stimuli; the ratings include **valence** (ranging from highly negative to highly positive), **arousal** 
 (ranging from relaxed/unaroused to excited/aroused), and **approach–avoidance** (ranging from a tendency to avoid to a tendency to approach a stimulus). 
 
-![Affective Ratings of the Selected Stimuli](https://github.com/Tam-Pham/AffectiveTask/blob/master/stimuli_selection/figures/Ratings_Selected.png)
+![Affective Ratings of the Selected Stimuli](https://github.com/neuropsychology/AffectiveTask/blob/master/stimuli_selection/figures/Ratings_Selected.png)
 
 Based on the original ratings of the stimuli, the two groups, *Neutral* and *Negative*, are distinctively different on the **arousal** and **valence** dimensions. 
 
