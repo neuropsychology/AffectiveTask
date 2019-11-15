@@ -50,7 +50,7 @@ n.instructions("In this task, you will be presented with different images and yo
 
 fixation_cross(3000)
 
-for i in range(60):
+for i in range(60): # Number of trials
     n.newpage("grey", auto_refresh=False)
     random_image = random.choice([
             x for x in list_stimuli
