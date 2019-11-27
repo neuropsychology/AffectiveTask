@@ -1,0 +1,163 @@
+---
+title: "Affective Task Analysis"
+output: 
+  github_document:
+    toc: true
+highlight: pygments
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  dpi=450,
+  fig.path = "figures/"
+)
+
+library(reticulate)
+reticulate::use_python(python = "D:/Downloads/WPy64-3741/python-3.7.4.amd64/python.exe")
+```
+
+# Utilities
+
+## Packages
+
+```{python}
+import os
+import re
+import pandas as pd
+import numpy as np
+
+import mne
+import autoreject
+import TruScanEEGpy
+import neurokit2 as nk
+```
+
+
+## Functions
+
+```{python}
+def check_events(raw):
+    events = raw.to_data_frame()["Foto"]
+    events = nk.events_find(events, inter_min=100)
+    if len(events["Duration"]) != 60:
+        print("Warning!")
+        print(events)
+        raw.to_data_frame()["Foto"].plot()
+    else:
+        return(events)
+```
+
+```{python}
+def add_events(raw):
+    events = check_events(raw)
+    events, event_id = nk.events_to_mne(events["Onset"])
+    raw.add_events(events, "Foto")
+    return(raw)
+```
+
+# Preprocessing
+
+## Data
+
+```{python}
+list_participants = os.listdir("../data/")
+x = np.array(["." not in x for x in list_participants])
+list_participants = list(np.array(list_participants)[x])
+list_participants
+```
+
+```{python}
+for participant in list_participants:
+    print(participant)
+    raw = mne.io.read_raw_edf("../data/" + participant + "/" + participant + ".edf", preload = True)
+    raw = raw.resample(100, npad='auto')
+    raw = add_events(raw)
+    
+    
+    # Remove additional channels and set montage
+    raw.info["ch_names"] = convert_channelnumber_tenfive(raw.info["ch_names"])
+    raw = raw.drop_channels(np.array(raw.info["ch_names"])[np.array([i not in layout.ch_names for i in raw.info["ch_names"]])])
+    raw = raw.set_montage(layout)
+    
+    eeg_channels = mne.pick_types(raw.info, eeg=True)
+```
+
+
+
+```{python}
+# eeg_channels = mne.pick_types(raw.info, eeg=True)
+# 
+# # =============================================================================
+# # Preprocessing
+# # =============================================================================
+# 
+# # Bad channels - manual
+# #raw.plot(n_channels = 64, duration = 30, scalings = {"eeg": 20e-5})
+# #raw.plot(butterfly = True)
+# #raw.info['bads'] = ['36', '48', '61', '63', '68']  # flashes
+# #raw.info['bads'] = ['19', '32', '36', '48', '61', '62', '63', '68']  # Oddball
+# #raw.info['bads'] = ["48"]
+# #raw = raw.interpolate_bads(reset_bads = True)
+# 
+# 
+# # Rereference
+# raw.set_eeg_reference('average', projection=True)
+# #raw.apply_proj()
+# #raw.set_eeg_reference(['24', '29'])
+# 
+# # Filter
+# raw = raw.notch_filter(np.arange(50, 251, 50), picks = eeg_channels, fir_design='firwin')
+# raw = raw.filter(1, 20)
+# 
+# # =============================================================================
+# # Epoching
+# # =============================================================================
+# 
+# epochs = mne.Epochs(raw, events=events, tmin=-0.2, tmax=0.5, detrend = 1, preload=True)
+# epochs.resample(500, npad="auto")
+# 
+# # Autoreject
+# ransac = autoreject.Ransac(verbose='progressbar', picks=eeg_channels, n_jobs=1)
+# epochs = ransac.fit_transform(epochs)
+# reject = autoreject.get_rejection_threshold(epochs)
+# 
+# 
+# 
+# # =============================================================================
+# # ICA
+# # =============================================================================
+# ica = mne.preprocessing.ICA(n_components=30, method='fastica', max_iter=1000, noise_cov=None).fit(epochs, reject=reject)
+# ica.plot_components()
+# #ica.plot_properties(epochs, picks=[1, 2, 9])
+# #ica.exclude += [1, 2, 9]
+# epochs = ica.apply(epochs)
+# 
+# # Autoreject 2
+# epochs = ransac.fit_transform(epochs)
+# reject = autoreject.get_rejection_threshold(epochs)
+# epochs.drop_bad(reject=reject)
+# 
+# 
+# evoked = epochs.average()
+# 
+# #epochs.average().plot()
+# #epochs.average().plot_topomap()
+# epochs.average().plot_joint()
+# #mne.viz.plot_epochs(epochs.average(), butterfly = True)
+# 
+# 
+# #mne.viz.plot_evoked_topo(evoked)
+# 
+# 
+# #raw.plot()
+# 
+# #epochs = mne.Epochs(raw, events=events, tmin=-0.2, tmax=0.5, detrend = 0, preload=True)
+# #reject = autoreject.get_rejection_threshold(epochs)
+# #raw.drop_channels(reject=reject)
+# #
+# #raw.drop_channels()
+```
+
